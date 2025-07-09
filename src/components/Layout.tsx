@@ -10,7 +10,7 @@ const menu = [
   { href: "/pricing", key: "pricing" },
   { href: "/reservation", key: "reservation" },
   { href: "/faq", key: "faq" },
-  { href: "/reviews", key: "reviews" },
+  { href: "/academy", key: "academy" }, // zamiana z reviews
   { href: "/news", key: "news" },
   { href: "/contact", key: "contact" },
 ];

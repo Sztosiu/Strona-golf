@@ -11,11 +11,13 @@ import Offer from "./pages/Offer";
 import Pricing from "./pages/Pricing";
 import Contact from "./pages/Contact";
 import FAQ from "./pages/FAQ";
-import Reviews from "./pages/Reviews";
+// import Reviews from "./pages/Reviews";
 import News from "./pages/News";
 import Reservation from "./pages/Reservation";
 import Layout from "./components/Layout";
 import LanguageSwitcher from "./components/LanguageSwitcher";
+import Academy from "./pages/Academy";
+import Footgolf from "./pages/Footgolf";
 
 const queryClient = new QueryClient();
 
@@ -34,9 +36,10 @@ const App = () => (
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/reservation" element={<Reservation />} />
             <Route path="/faq" element={<FAQ />} />
-            <Route path="/reviews" element={<Reviews />} />
+            <Route path="/academy" element={<Academy />} />
             <Route path="/news" element={<News />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/footgolf" element={<Footgolf />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>

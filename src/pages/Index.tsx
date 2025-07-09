@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import WeatherWidget from "../components/WeatherWidget";
 import { useTranslation } from "react-i18next";
+import React, { useState } from "react";
 
 const features = [
   {
@@ -27,6 +28,38 @@ const features = [
 
 export default function Index() {
   const { t } = useTranslation();
+
+  // Opinie do karuzeli
+  const reviews = [
+    {
+      author: "Anna, Wrocław",
+      text: "Świetne miejsce na naukę i relaks! Polecam każdemu, kto chce spróbować golfa. Trenerzy są bardzo pomocni.",
+      stars: 5,
+    },
+    {
+      author: "Tomasz, Wałbrzych",
+      text: "Bardzo przyjazna atmosfera, piękne otoczenie i profesjonalna obsługa. Na pewno wrócę!",
+      stars: 4,
+    },
+    {
+      author: "Julia, Świdnica",
+      text: "Golf w Gorko Golf to czysta przyjemność. Akademia dla dzieci to strzał w dziesiątkę!",
+      stars: 5,
+    },
+    {
+      author: "Marek, Dzierżoniów",
+      text: "Polecam każdemu, kto szuka nowego hobby. Świetne miejsce na rodzinny weekend.",
+      stars: 5,
+    },
+    {
+      author: "Ewa, Legnica",
+      text: "Turnieje organizowane na wysokim poziomie, dużo emocji i świetna zabawa!",
+      stars: 5,
+    },
+  ];
+  const [reviewIdx, setReviewIdx] = useState(0);
+  const nextReview = () => setReviewIdx((reviewIdx + 1) % reviews.length);
+  const prevReview = () => setReviewIdx((reviewIdx - 1 + reviews.length) % reviews.length);
 
   return (
     <div className="min-h-screen bg-white">
@@ -75,6 +108,55 @@ export default function Index() {
         </div>
       </section>
 
+      {/* AKADEMIA GORKO GOLF ZAJAWKA */}
+      <section className="py-12 bg-green-50">
+        <div className="max-w-3xl mx-auto px-4 text-center">
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-green-900 mb-4 flex items-center justify-center gap-2">
+            <span className="text-3xl">⛳</span> Akademia Gorko Golf
+          </h2>
+          <p className="text-lg text-gray-700 mb-6">Odkryj pasję do golfa z naszymi trenerami! Nauka gry dla dzieci, młodzieży, dorosłych i seniorów – od podstaw po zaawansowane techniki. Sprawdź szczegóły i zapisz się już dziś!</p>
+          <a href="/academy" className="inline-block px-8 py-3 rounded bg-green-900 text-white font-bold shadow hover:bg-green-800 transition text-base">Dowiedz się więcej</a>
+        </div>
+      </section>
+
+      {/* FOOTGOLF ZAJAWKA */}
+      <section className="py-12 bg-green-50">
+        <div className="max-w-3xl mx-auto px-4 text-center">
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-green-900 mb-4 flex items-center justify-center gap-2">
+            <span className="text-3xl">⚽⛳</span> Footgolf w Gorko Golf
+          </h2>
+          <p className="text-lg text-gray-700 mb-6">
+            Footgolf to połączenie piłki nożnej i golfa! Zamiast kija używasz nóg, a piłeczkę golfową zastępuje piłka nożna. To świetna zabawa dla każdego – sprawdź szczegóły i spróbuj nowej dyscypliny na naszym polu!
+          </p>
+          <a href="/footgolf" className="inline-block px-8 py-3 rounded bg-green-900 text-white font-bold shadow hover:bg-green-800 transition text-base">Dowiedz się więcej</a>
+        </div>
+      </section>
+
+      {/* OPINIE */}
+      <section className="py-16 bg-gradient-to-l from-green-50 to-white">
+        <div className="max-w-2xl mx-auto px-4 text-center">
+          <h2 className="text-2xl font-serif font-bold text-green-900 mb-6">Co mówią nasi goście?</h2>
+          <div className="flex items-center justify-center gap-4 mb-8">
+            <button onClick={prevReview} className="p-2 rounded-full bg-green-100 hover:bg-green-200 transition"><span className="text-2xl">&#8592;</span></button>
+            <div className="flex-1">
+              <div className="bg-white rounded-2xl shadow p-8 flex flex-col items-center">
+                <div className="flex gap-1 mb-2">
+                  {Array.from({ length: reviews[reviewIdx].stars }).map((_, i) => (
+                    <span key={i} className="text-yellow-400 text-xl">★</span>
+                  ))}
+                  {Array.from({ length: 5 - reviews[reviewIdx].stars }).map((_, i) => (
+                    <span key={i} className="text-gray-300 text-xl">★</span>
+                  ))}
+                </div>
+                <div className="text-lg text-gray-700 mb-2">{reviews[reviewIdx].text}</div>
+                <div className="font-bold text-green-900">{reviews[reviewIdx].author}</div>
+              </div>
+            </div>
+            <button onClick={nextReview} className="p-2 rounded-full bg-green-100 hover:bg-green-200 transition"><span className="text-2xl">&#8594;</span></button>
+          </div>
+        </div>
+      </section>
+
       {/* Z ŻYCIA KLUBU / ZAJAWKA GALERII */}
       <section className="py-16 bg-white">
         <div className="max-w-5xl mx-auto px-4">
@@ -82,7 +164,7 @@ export default function Index() {
             <h2 className="text-2xl md:text-3xl font-serif font-bold text-green-900 mb-4 md:mb-0">{t('galleryTeaser.title')}</h2>
             <a href="/gallery" className="px-6 py-2 rounded bg-green-900 text-white font-bold shadow hover:bg-green-800 transition text-base">{t('galleryTeaser.cta')}</a>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 mb-8">
             <img src="/images/hero-drone.jpg" alt="Gorko Golf" className="rounded-xl object-cover w-full h-32 md:h-36 shadow" />
             <img src="/images/IMG_1885.f7b92468-1.jpg" alt="Turniej" className="rounded-xl object-cover w-full h-32 md:h-36 shadow" />
             <img src="/images/IMG_1624.c2a6f471-1.webp" alt="Restauracja" className="rounded-xl object-cover w-full h-32 md:h-36 shadow" />
@@ -90,33 +172,20 @@ export default function Index() {
             <img src="/images/IMG_1912.ce1ecee0-1.webp" alt="Restauracja" className="rounded-xl object-cover w-full h-32 md:h-36 shadow" />
             <img src="/images/IMG_1936.f5d05a27-1.webp" alt="Turniej" className="rounded-xl object-cover w-full h-32 md:h-36 shadow" />
           </div>
-          <p className="text-center text-gray-600 mt-4">{t('galleryTeaser.desc')}</p>
-        </div>
-      </section>
-
-      {/* ZAJAWKA TURNIEJÓW */}
-      <section className="py-12 bg-green-50">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-serif font-bold text-green-900 mb-4">Turnieje w Gorko Golf</h2>
-          <p className="text-lg text-gray-700 mb-6">Zobacz emocje, rywalizację i radość z gry podczas naszych turniejów! Sprawdź galerię zdjęć z ostatnich wydarzeń i poczuj atmosferę sportowej pasji.</p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-6">
-            <img src="/images/turnieje/IMG_3397.7d0430ec-900x600.webp" alt="Turniej" className="rounded-xl object-cover w-full h-32 md:h-36 shadow transition-transform duration-200 hover:scale-105" />
-            <img src="/images/turnieje/IMG_3151.c1e9e272-900x600.webp" alt="Turniej" className="rounded-xl object-cover w-full h-32 md:h-36 shadow transition-transform duration-200 hover:scale-105" />
-            <img src="/images/turnieje/IMG_2059.cd53aa8d-800x600.webp" alt="Turniej" className="rounded-xl object-cover w-full h-32 md:h-36 shadow transition-transform duration-200 hover:scale-105" />
-            <img src="/images/turnieje/IMG_1756.eda83690-450x600.webp" alt="Turniej" className="rounded-xl object-cover w-full h-32 md:h-36 shadow transition-transform duration-200 hover:scale-105" />
-            <img src="/images/turnieje/IMG_2062.8c7dc10f-800x600.webp" alt="Turniej" className="rounded-xl object-cover w-full h-32 md:h-36 shadow transition-transform duration-200 hover:scale-105" />
+          {/* Turnieje w Gorko Golf jako podsekcja */}
+          <div className="bg-green-50 rounded-2xl shadow p-8 mt-8">
+            <h3 className="text-xl md:text-2xl font-serif font-bold text-green-900 mb-4 flex items-center gap-2"><span className="text-2xl">🏆</span>Turnieje w Gorko Golf</h3>
+            <p className="text-lg text-gray-700 mb-6">Zobacz emocje, rywalizację i radość z gry podczas naszych turniejów! Sprawdź galerię zdjęć z ostatnich wydarzeń i poczuj atmosferę sportowej pasji.</p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-6">
+              <img src="/images/turnieje/IMG_3397.7d0430ec-900x600.webp" alt="Turniej" className="rounded-xl object-cover w-full h-32 md:h-36 shadow transition-transform duration-200 hover:scale-105" />
+              <img src="/images/turnieje/IMG_3151.c1e9e272-900x600.webp" alt="Turniej" className="rounded-xl object-cover w-full h-32 md:h-36 shadow transition-transform duration-200 hover:scale-105" />
+              <img src="/images/turnieje/IMG_2059.cd53aa8d-800x600.webp" alt="Turniej" className="rounded-xl object-cover w-full h-32 md:h-36 shadow transition-transform duration-200 hover:scale-105" />
+              <img src="/images/turnieje/IMG_1756.eda83690-450x600.webp" alt="Turniej" className="rounded-xl object-cover w-full h-32 md:h-36 shadow transition-transform duration-200 hover:scale-105" />
+              <img src="/images/turnieje/IMG_2062.8c7dc10f-800x600.webp" alt="Turniej" className="rounded-xl object-cover w-full h-32 md:h-36 shadow transition-transform duration-200 hover:scale-105" />
+            </div>
+            <a href="/gallery" className="inline-block px-8 py-3 rounded bg-green-900 text-white font-bold shadow hover:bg-green-800 transition text-base">Zobacz wszystkie zdjęcia z turniejów</a>
           </div>
-          <a href="/gallery" className="inline-block px-8 py-3 rounded bg-green-900 text-white font-bold shadow hover:bg-green-800 transition text-base">Zobacz wszystkie zdjęcia z turniejów</a>
-        </div>
-      </section>
-
-      {/* OPINIA KLIENTA */}
-      <section className="py-16 bg-gradient-to-l from-green-50 to-white">
-        <div className="max-w-2xl mx-auto px-4 text-center">
-          <h2 className="text-2xl font-serif font-bold text-green-900 mb-6">{t('reviewTeaser.title')}</h2>
-          <blockquote className="italic text-lg text-gray-700 mb-4 border-l-4 border-green-900 pl-4">{t('reviewTeaser.quote')}</blockquote>
-          <div className="text-green-900 font-bold">{t('reviewTeaser.author')}</div>
-          <a href="/reviews" className="inline-block mt-6 px-6 py-2 rounded bg-green-900 text-white font-bold shadow hover:bg-green-800 transition text-base">{t('reviewTeaser.cta')}</a>
+          <p className="text-center text-gray-600 mt-4">{t('galleryTeaser.desc')}</p>
         </div>
       </section>
 
@@ -159,15 +228,6 @@ export default function Index() {
               <div className="text-gray-700 text-sm">{t('forwho.advancedDesc')}</div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* ZAPROSZENIE */}
-      <section className="py-16 bg-white">
-        <div className="max-w-3xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-green-900 mb-6">{t('invite.title')}</h2>
-          <p className="text-xl text-gray-700 mb-8">{t('invite.desc')}</p>
-          <a href="/reservation" className="px-10 py-4 rounded bg-green-900 text-white font-bold shadow hover:bg-green-800 transition text-lg">{t('invite.cta')}</a>
         </div>
       </section>
 
@@ -229,3 +289,4 @@ export default function Index() {
     </div>
   );
 }
+
