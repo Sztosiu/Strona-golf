@@ -3,23 +3,47 @@ import { Badge } from "@/components/ui/badge";
 import { useTranslation } from "react-i18next";
 
 const images = [
-  { src: "/images/hero-drone.jpg", alt: "Z lotu ptaka", category: "Z lotu ptaka" },
+  // Zdjęcia z lotu ptaka - nowe zdjęcia DJI
+  { src: "/images/z lotu ptaka/DJI_20250704072840_0260_D.JPG", alt: "Gorko Golf z lotu ptaka - widok ogólny", category: "Z lotu ptaka" },
+  { src: "/images/z lotu ptaka/DJI_20250704073127_0261_D.JPG", alt: "Gorko Golf z lotu ptaka - pole golfowe", category: "Z lotu ptaka" },
+  { src: "/images/z lotu ptaka/DJI_20250704073133_0262_D.JPG", alt: "Gorko Golf z lotu ptaka - panorama", category: "Z lotu ptaka" },
+  { src: "/images/z lotu ptaka/DJI_20250704073226_0263_D.JPG", alt: "Gorko Golf z lotu ptaka - dołki golfowe", category: "Z lotu ptaka" },
+  { src: "/images/z lotu ptaka/DJI_20250704073746_0266_D.JPG", alt: "Gorko Golf z lotu ptaka - widok z wysokości", category: "Z lotu ptaka" },
+  { src: "/images/z lotu ptaka/DJI_20250704073757_0267_D.JPG", alt: "Gorko Golf z lotu ptaka - widok panoramiczny", category: "Z lotu ptaka" },
+  { src: "/images/z lotu ptaka/DJI_20250704073816_0268_D.JPG", alt: "Gorko Golf z lotu ptaka - pole golfowe z góry", category: "Z lotu ptaka" },
+  { src: "/images/z lotu ptaka/DJI_20250704073935_0269_D.JPG", alt: "Gorko Golf z lotu ptaka - widok na dołki", category: "Z lotu ptaka" },
+  { src: "/images/z lotu ptaka/DJI_20250704074004_0271_D.JPG", alt: "Gorko Golf z lotu ptaka - panorama terenu", category: "Z lotu ptaka" },
+  { src: "/images/z lotu ptaka/DJI_20250704074357_0274_D.JPG", alt: "Gorko Golf z lotu ptaka - widok z wysokości", category: "Z lotu ptaka" },
+  { src: "/images/z lotu ptaka/DJI_20250704074442_0276_D.JPG", alt: "Gorko Golf z lotu ptaka - pole golfowe panoramiczne", category: "Z lotu ptaka" },
+  { src: "/images/z lotu ptaka/DJI_20250704082654_0294_D.JPG", alt: "Gorko Golf z lotu ptaka - widok poranny", category: "Z lotu ptaka" },
+  { src: "/images/z lotu ptaka/DJI_20250704082720_0295_D.JPG", alt: "Gorko Golf z lotu ptaka - pole golfowe rano", category: "Z lotu ptaka" },
+  { src: "/images/z lotu ptaka/DJI_20250704082730_0296_D.JPG", alt: "Gorko Golf z lotu ptaka - widok na dołki rano", category: "Z lotu ptaka" },
+  { src: "/images/z lotu ptaka/DJI_20250704082821_0297_D.JPG", alt: "Gorko Golf z lotu ptaka - panorama poranna", category: "Z lotu ptaka" },
+  { src: "/images/z lotu ptaka/DJI_20250704084145_0300_D.JPG", alt: "Gorko Golf z lotu ptaka - widok z wysokości", category: "Z lotu ptaka" },
+  { src: "/images/z lotu ptaka/DJI_20250704084159_0301_D.JPG", alt: "Gorko Golf z lotu ptaka - pole golfowe panoramiczne", category: "Z lotu ptaka" },
+  { src: "/images/hero-drone.jpg", alt: "Gorko Golf z lotu ptaka - główny widok", category: "Z lotu ptaka" },
+  
+  // Zdjęcia akademii i pola golfowego (widoczne w "Wszystkie")
   { src: "/images/IMG_1593.887dec4b-1.webp", alt: "Akademia", category: "Akademia" },
-  { src: "/images/IMG_1624.c2a6f471-1.webp", alt: "Restauracja", category: "Restauracja" },
+  { src: "/images/IMG_1624.c2a6f471-1.webp", alt: "Akademia", category: "Akademia" },
   { src: "/images/IMG_1654.d8a21583-1.webp", alt: "Akademia", category: "Akademia" },
-  { src: "/images/IMG_1682.90a9beba-1.webp", alt: "Restauracja", category: "Restauracja" },
+  { src: "/images/IMG_1682.90a9beba-1.webp", alt: "Akademia", category: "Akademia" },
   { src: "/images/IMG_1783.8ab07bd8-1.webp", alt: "Akademia", category: "Akademia" },
-  { src: "/images/IMG_1784.64e15980-1.webp", alt: "Restauracja", category: "Restauracja" },
+  { src: "/images/IMG_1784.64e15980-1.webp", alt: "Akademia", category: "Akademia" },
   { src: "/images/IMG_1841.14ea57af-1.webp", alt: "Akademia", category: "Akademia" },
-  { src: "/images/IMG_1847.5cd302f5-1.webp", alt: "Restauracja", category: "Restauracja" },
+  { src: "/images/IMG_1847.5cd302f5-1.webp", alt: "Akademia", category: "Akademia" },
   { src: "/images/IMG_1855.15e5f8ca-1.webp", alt: "Akademia", category: "Akademia" },
-  { src: "/images/IMG_1871.b8d70de7-1.webp", alt: "Restauracja", category: "Restauracja" },
+  { src: "/images/IMG_1871.b8d70de7-1.webp", alt: "Akademia", category: "Akademia" },
   { src: "/images/IMG_1889.42ae424e-1.webp", alt: "Akademia", category: "Akademia" },
-  { src: "/images/IMG_1896.2905e4da-1.webp", alt: "Restauracja", category: "Restauracja" },
+  { src: "/images/IMG_1896.2905e4da-1.webp", alt: "Akademia", category: "Akademia" },
   { src: "/images/IMG_1904.2a6b3aed-1.webp", alt: "Akademia", category: "Akademia" },
-  { src: "/images/IMG_1912.ce1ecee0-1.webp", alt: "Restauracja", category: "Restauracja" },
+  { src: "/images/IMG_1912.ce1ecee0-1.webp", alt: "Akademia", category: "Akademia" },
   { src: "/images/IMG_1920.1be10d1b-1.webp", alt: "Akademia", category: "Akademia" },
-  { src: "/images/IMG_1928.3a64799b-1.webp", alt: "Restauracja", category: "Restauracja" },
+  { src: "/images/IMG_1928.3a64799b-1.webp", alt: "Akademia", category: "Akademia" },
+  
+  // Zdjęcia restauracji (tylko te dwa nowe z folderu Restauracja)
+  { src: "/images/Restauracja/129715936_2810344585908993_2979146253927854291_n.jpg", alt: "Restauracja Gorko Golf - wnętrze", category: "Restauracja" },
+  { src: "/images/Restauracja/491880915_1319095556448670_2832730795411451659_n.jpg", alt: "Restauracja Gorko Golf - atmosfera", category: "Restauracja" },
   // Turnieje tylko z folderu /images/turnieje
   { src: "/images/turnieje/IMG_3397.7d0430ec-900x600.webp", alt: "Turniej", category: "Turnieje" },
   { src: "/images/turnieje/IMG_3228.8565acbc-900x600.webp", alt: "Turniej", category: "Turnieje" },
@@ -76,9 +100,7 @@ export default function Gallery() {
             </div>
           ))}
         </div>
-        <div className="text-center mt-8">
-          <a href="mailto:biuro@gorkogolf.pl" className="px-6 py-2 rounded bg-green-900 text-white font-bold shadow hover:bg-green-800 transition text-base">{t('galleryPage.cta')}</a>
-        </div>
+
       </div>
     </div>
   );
